@@ -1,6 +1,6 @@
 import { NavLink} from 'react-router-dom'
 
-const MovieCard = ({ name, image, overview }) => {
+const MovieCard = ({ id, name, image, overview }) => {
     let imagen = 'https://image.tmdb.org/t/p/w500/' + image
     return (
         <div className="col">
@@ -13,7 +13,7 @@ const MovieCard = ({ name, image, overview }) => {
                     </p>
                 </div>
                     <div className="card-footer text-center">
-                    <NavLink to={`/movies/${name}`} className="btn btn-primary">
+                    <NavLink to={`/movie/${id}`} className="btn btn-primary">
                         Ver pelicula
                     </NavLink>
                     </div>

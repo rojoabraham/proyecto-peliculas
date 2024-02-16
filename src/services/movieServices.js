@@ -1,7 +1,6 @@
 //import axios from 'axios';
 
-// const BASE_URL = 'https://api.themoviedb.org/3'
-// // const token= '3ca964b421124ea839b827d0a63a93e4'
+const BASE_URL = 'https://api.themoviedb.org/3'
 
 // const config = {
 //     'Content-Type': 'application/json',
@@ -18,7 +17,8 @@ const options = {
     }
   };
   
-  const getAllMovies = async () => fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', options)
+const getAllMovies = async () => fetch(`${BASE_URL}/movie/popular?language=en-US&page=1`, options)
 
+const getMovie = async (movieId) => fetch(`${BASE_URL}/movie/${movieId}`, options)
 
-export { getAllMovies }
+export { getAllMovies, getMovie }

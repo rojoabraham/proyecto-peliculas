@@ -29,7 +29,8 @@ const Movies = () => {
 
       <MoviesList>
       {peliculas.map((movie) => (<MovieCard 
-      key={movie.id} 
+      key={movie.id}
+      id={movie.id} 
       name={movie.title} 
       image={movie.poster_path}
       overview={movie.overview}
