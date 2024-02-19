@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import './header.css'
+import logo from '../../assets/api logo.png'
 
 const Header = () => {
     const linkIsActive = (isActive) => {
@@ -9,7 +10,9 @@ const Header = () => {
     return (
     <header>
         <nav className="header">
-            <NavLink to="/" className="header-logo">API Películas</NavLink>
+            <NavLink to="/" className="header-logo">
+                <img src={logo} className='logo' />
+            </NavLink>
             <ul className="header-nav-list">
                 <li>
                 <NavLink to="/" 
@@ -18,10 +21,10 @@ const Header = () => {
                 </NavLink>
                 </li>
                 <li>
-                <NavLink to="/movies" className= {({isActive}) => linkIsActive(isActive)}>Movies</NavLink>
+                <NavLink to="/movies" className= {({isActive}) => linkIsActive(isActive)}>Películas</NavLink>
                 </li>
                 <li>
-                    <NavLink to="/about" className= {({isActive}) => linkIsActive(isActive)}>About</NavLink>
+                    <NavLink to="/about" className= {({isActive}) => linkIsActive(isActive)}>Nosotros</NavLink>
                 </li>
             </ul>
         </nav>

@@ -30,6 +30,7 @@ const MovieDetails = () => {
             title={movie.title}
             overview={movie.overview}
             image={movie.poster_path}
+            genres={movie.genre_ids}
         />
     </>
   )

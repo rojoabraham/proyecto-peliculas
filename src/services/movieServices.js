@@ -1,5 +1,4 @@
 //import axios from 'axios';
-
 const BASE_URL = 'https://api.themoviedb.org/3'
 
 // const config = {
@@ -17,8 +16,13 @@ const options = {
     }
   };
   
-const getAllMovies = async () => fetch(`${BASE_URL}/movie/popular?language=en-US&page=1`, options)
+const getAllMovies = async (type = 'popular') => fetch(`${BASE_URL}/movie/${type}?language=en-US&page=1`, options)
 
 const getMovie = async (movieId) => fetch(`${BASE_URL}/movie/${movieId}`, options)
 
-export { getAllMovies, getMovie }
+const getGenres = async() => fetch(`${BASE_URL}/genre/movie/list`, options)
+
+const getMovieByGenre = async(genre) => fetch(`${BASE_URL}/discover/movie?with_genres=${genre}`, options)
+
+
+export { getAllMovies, getMovie, getGenres, getMovieByGenre }
