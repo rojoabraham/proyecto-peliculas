@@ -22,7 +22,7 @@ const getMovie = async (movieId) => fetch(`${BASE_URL}/movie/${movieId}`, option
 
 const getGenres = async() => fetch(`${BASE_URL}/genre/movie/list`, options)
 
-const getMovieByGenre = async(genre) => fetch(`${BASE_URL}/discover/movie?with_genres=${genre}`, options)
+const getMovieByGenre = async( type ='popular', genre) => fetch(`${BASE_URL}/discover/movie?with_genres=${genre}`, options)
 
 
 export { getAllMovies, getMovie, getGenres, getMovieByGenre }

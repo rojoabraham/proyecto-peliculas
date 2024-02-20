@@ -1,14 +1,8 @@
-import React from 'react'
 import './movieDetail.css'
 
-const MovieDetail = ({ id, title, overview, image, genres=[] }) => {
+const MovieDetail = ({ id, title, overview, image, genres = [] }) => {
 
-console.log(genres)
-const genresList = (genres) => {
-genres.map((genre) => (<a key={genre.id} href="#" className="label">{genre.name}</a>) )
 
-}  
-  
   return (
     <div className="container mt-5">
       <div className="row">
@@ -24,7 +18,7 @@ genres.map((genre) => (<a key={genre.id} href="#" className="label">{genre.name}
         <div className='col-md-6'>
           <div className="card-body">
             <h5 className="card-title">{title}</h5>
-            {genres.map((genre) => (<a key={genre} href="#" className="label">1</a>) )}
+            {genres.map((genre) => (<a key={genre.id} href="#" className="badge bg-dark me-1">{genre.name}</a>))}
             <p className="card-text">
               {overview}
             </p>

@@ -2,15 +2,17 @@ import { useEffect, useState } from 'react'
 import { getAllMovies } from '../services/movieServices'
 import MoviesList from '../components/MoviesList'
 import MovieCard from '../components/MovieCard'
+import BtnFilters from '../components/BtnFilters'
+import GenreFilter from '../components/GenreFilter'
+
 
 const Movies = () => {
   const [peliculas, setPeliculas] = useState([])
   const [tipo, setTipo] = useState('Populares')
-  const [activeButton, setActiveButton] = useState(0);
   const buttons = [
-    {id:0, label: 'popular', name: 'Populares'},
-    {id:1, label: 'top_rated', name: 'Top Rated'},
-    {id:2, label: 'upcoming', name: 'Upcoming'}];
+    { id: 0, label: 'popular', name: 'Populares' },
+    { id: 1, label: 'top_rated', name: 'Top Rated' },
+    { id: 2, label: 'upcoming', name: 'Upcoming' }];
 
   const getMoviesData = async (type) => {
     try {
@@ -19,21 +21,21 @@ const Movies = () => {
       const { results } = data
       setPeliculas(results)
     } catch (error) {
-      console.log('Paso un error', error)
+      console.log('Pasó un error', error)
     }
   }
 
   const handleClick = (value) => {
-    setActiveButton(value.id)
-    getMoviesData(value.label);
-    if(value.label==='upcoming') {
+    getMoviesData(value);
+    if (value === 'upcoming') {
       setTipo('Upcoming');
-    } else if(value.label==='top_rated') {
+    } else if (value === 'top_rated') {
       setTipo('Top Rated');
     } else {
       setTipo('Populares')
     }
   };
+
 
   useEffect(() => {
     getMoviesData()
@@ -45,29 +47,30 @@ const Movies = () => {
       <div className='d-flex justify-content-center'>
         <span className='text-center'>Filtrar:&nbsp;</span>
         <div className="btn-group">
-      {buttons.map((value) => (
-        <button
-          key={value.id}
-          type="button"
-          className={`btn ${activeButton === value.id ? 'btn-primary' : 'btn-secondary'}`}
-          onClick={() => handleClick(value)}
-        >
-          {value.name}
-        </button>
-      ))}
-    </div>
+          {buttons.map((value) => (
+            <BtnFilters
+              key={value.id}
+              id={value.id}
+              label={value.label}
+              name={value.name}
+              tipo={tipo}
+              miOnClick={handleClick}
+            />
+          ))}
+        </div>
+        {/* <GenreFilter /> */}
       </div>
-  
+
 
       <MoviesList>
-      {peliculas.map((movie) => (<MovieCard 
-      key={movie.id}
-      id={movie.id} 
-      name={movie.title} 
-      image={movie.poster_path}
-      overview={movie.overview}
-      />))}
-    </MoviesList> 
+        {peliculas.map((movie) => (<MovieCard
+          key={movie.id}
+          id={movie.id}
+          name={movie.title}
+          image={movie.poster_path}
+          overview={movie.overview}
+        />))}
+      </MoviesList>
     </div>
   )
 }
